@@ -1,5 +1,3 @@
-import Truck from "./classes/truck";
-import Ship from "./classes/ship";
 import Cost from "./classes/cost";
 
 export default class Controller {
@@ -8,21 +6,18 @@ export default class Controller {
     this.view = view;
 
     this.model.getItemsFromLS();
-    this.view.init(this.model.trucks, this.model.ships, this.model.costs);
+    this.view.init(this.model.vehicles, this.model.costs);
 
     this.view.on("add", this.addItem.bind(this));
   }
 
   showAllItems() {
-    const { trucks, ships, costs } = this.model;
-    this.view.init(trucks, ships, costs);
+    const { vehicles, costs } = this.model;
+    this.view.init(vehicles, costs);
   }
 
   addItem(item) {
-    let listType;
-    if (item instanceof Truck) listType = "trucks";
-    if (item instanceof Ship) listType = "ships";
-    if (item instanceof Cost) listType = "costs";
+    const listType = item instanceof Cost ? "costs" : "vehicles";
 
     this.model.addItem(item, listType);
     try {

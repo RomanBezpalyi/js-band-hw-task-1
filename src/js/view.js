@@ -10,8 +10,7 @@ export default class View extends EventEmitter {
     // QUERY SELECTORS
 
     this.forms = document.querySelector(".form-list");
-    this.truckList = document.querySelector(".truck-list");
-    this.shipList = document.querySelector(".ship-list");
+    this.vehicleList = document.querySelector(".vehicle-list");
     this.costList = document.querySelector(".cost-list");
 
     // EVENT LISTENERS
@@ -240,6 +239,8 @@ export default class View extends EventEmitter {
             teamWrapper
           );
           break;
+        default:
+          return;
       }
     }
 
@@ -252,17 +253,17 @@ export default class View extends EventEmitter {
     e.target.reset();
   }
 
-  init(trucks, ships, costs) {
-    this.truckList.innerHTML = "";
-    this.shipList.innerHTML = "";
+  init(vehicles, costs) {
+    this.vehicleList.innerHTML = "";
     this.costList.innerHTML = "";
 
-    const trucksToAdd = trucks.map(truck => this.createItem("trucks", truck));
-    const shipsToAdd = ships.map(ship => this.createItem("ships", ship));
+    const vehiclesToAdd = vehicles.map(vehicle => {
+      const type = vehicle.hasOwnProperty("licensePlate") ? "trucks" : "ships";
+      return this.createItem(type, vehicle);
+    });
     const costsToAdd = costs.map(cost => this.createItem("costs", cost));
 
-    this.truckList.append(...trucksToAdd);
-    this.shipList.append(...shipsToAdd);
+    this.vehicleList.append(...vehiclesToAdd);
     this.costList.append(...costsToAdd);
   }
 }

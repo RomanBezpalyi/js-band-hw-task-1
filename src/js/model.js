@@ -1,16 +1,13 @@
 export default class Model {
-  constructor(trucks = [], ships = [], costs = []) {
-    this.trucks = trucks;
-    this.ships = ships;
+  constructor(vehicles = [], costs = []) {
+    this.vehicles = vehicles;
     this.costs = costs;
   }
 
   getItemsFromLS() {
     try {
-      if (localStorage.trucks)
-        this.trucks = JSON.parse(localStorage.getItem("trucks"));
-      if (localStorage.ships)
-        this.ships = JSON.parse(localStorage.getItem("ships"));
+      if (localStorage.vehicles)
+        this.vehicles = JSON.parse(localStorage.getItem("vehicles"));
       if (localStorage.costs)
         this.costs = JSON.parse(localStorage.getItem("costs"));
     } catch (e) {

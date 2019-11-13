@@ -21,14 +21,14 @@
           <input type='text' id="truck-license-plate" class="truck-form__license license" required
             placeholder="License plate">
           <label for='truck-produced-year' class="truck-form__title">Produced year:</label>
-          <input type='number' id="truck-produced-year" class="truck-form__year year" required
-            placeholder="Produced year">
+          <input type='number' name="year" id="truck-produced-year" class="truck-form__year year" required
+            placeholder="Produced year" min="1900" max="2019" maxlength="4">
           <label for='truck-capacity' class="truck-form__title">Capacity:</label>
           <input type='number' id="truck-capacity" class="truck-form__capacity capacity" required
-            placeholder="Capacity (in kg)">
+            placeholder="Capacity (in kg)" min="0">
           <label for='truck-average-speed' class="truck-form__title">Average speed:</label>
           <input type='number' id="truck-average-speed" class="truck-form__speed speed" required
-            placeholder="Average speed (in km)">
+            placeholder="Average speed (in km)" min="0">
           <label for='truck-type-of-gas' class="truck-form__title">Type of gas:</label>
           <input type='text' id="truck-type-of-gas" class="truck-form__type-of-gas gas" required
             placeholder="Type of gas">
@@ -46,17 +46,17 @@
           <label for='ship-name' class="ship-form__title">Name:</label>
           <input type='text' id="ship-name" class="ship-form__name name" required placeholder="Name">
           <label for='ship-produced-year' class="ship-form__title">Produced year:</label>
-          <input type='number' id="ship-produced-year" class="ship-form__year year" required
-            placeholder="Produced year">
+          <input type='number' name="year" id="ship-produced-year" class="ship-form__year year" required
+            placeholder="Produced year" min="1900" max="2019" maxlength="4">
           <label for='ship-capacity' class="ship-form__title">Capacity:</label>
           <input type='number' id="ship-capacity" class="ship-form__capacity capacity" required
-            placeholder="Capacity (in kg)">
+            placeholder="Capacity (in kg)" min="0">
           <label for='ship-average-speed' class="ship-form__title">Average speed:</label>
           <input type='number' id="ship-average-speed" class="ship-form__speed speed" required
-            placeholder="Average speed (in nm)">
+            placeholder="Average speed (in nm)" min="0">
           <label for='ship-count-of-team' class="ship-form__title">Count of team:</label>
           <input type='number' id="ship-count-of-team" class="ship-form__count-of-team team" required
-            placeholder="Count of team">
+            placeholder="Count of team" min="0">
           <div class="button-wrapper">
             <button type="submit" class="create-btn">Create</button>
             <button type="reset" class="cancel-btn">Cancel</button>
@@ -76,10 +76,10 @@
           </div>
           <label for='cost-per-cargo' class="cost-form__title">Cost by 1 kg of cargo:</label>
           <input type='number' id="cost-per-cargo" class="cost-form__cargo cargo" required
-            placeholder="Cost by 1 kg of cargo">
+            placeholder="Cost by 1 kg of cargo" min="0">
           <label for='cost-per-distance' class="cost-form__title">Cost by 1 km of distance:</label>
           <input type='number' id="cost-per-distance" class="cost-form__distance distance" required
-            placeholder="Cost by 1 km of distance">
+            placeholder="Cost by 1 km of distance" min="0">
           <div class="button-wrapper">
             <button type="submit" class="create-btn">Create</button>
             <button type="reset" class="cancel-btn">Cancel</button>
@@ -92,12 +92,8 @@
   <main class='main-content'>
     <ul class="item-list-list">
       <li class="item-list-list__item">
-        <h3 class="item-list-list__title">Trucks</h3>
-        <ul class="truck-list"></ul>
-      </li>
-      <li class="item-list-list__item">
-        <h3 class="item-list-list__title">Ships</h3>
-        <ul class="ship-list"></ul>
+        <h3 class="item-list-list__title">Vehicles</h3>
+        <ul class="vehicle-list"></ul>
       </li>
       <li class="item-list-list__item">
         <h3 class="item-list-list__title">Costs</h3>
