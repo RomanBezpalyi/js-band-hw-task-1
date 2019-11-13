@@ -1,3 +1,5 @@
+import collectionTypes from "./constants/collectionTypes";
+
 export default class Model {
   constructor(vehicles = [], costs = []) {
     this.vehicles = vehicles;
@@ -7,9 +9,11 @@ export default class Model {
   getItemsFromLS() {
     try {
       if (localStorage.vehicles)
-        this.vehicles = JSON.parse(localStorage.getItem("vehicles"));
+        this.vehicles = JSON.parse(
+          localStorage.getItem(collectionTypes.VEHICLES)
+        );
       if (localStorage.costs)
-        this.costs = JSON.parse(localStorage.getItem("costs"));
+        this.costs = JSON.parse(localStorage.getItem(collectionTypes.COSTS));
     } catch (e) {
       console.error("Error while parsing.");
     }

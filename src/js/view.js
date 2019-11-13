@@ -2,6 +2,7 @@ import EventEmitter from "./services/event-emitter";
 import Truck from "./classes/truck";
 import Ship from "./classes/ship";
 import Cost from "./classes/cost";
+import collectionTypes from "./constants/collectionTypes";
 
 export default class View extends EventEmitter {
   constructor() {
@@ -39,7 +40,7 @@ export default class View extends EventEmitter {
     }
 
     switch (target.name) {
-      case "trucks":
+      case collectionTypes.TRUCKS:
         const license = target.querySelector(".license");
         const typeOfGas = target.querySelector(".gas");
 
@@ -48,7 +49,7 @@ export default class View extends EventEmitter {
 
         inst = new Truck(item);
         break;
-      case "ships":
+      case collectionTypes.SHIPS:
         const name = target.querySelector(".name");
         const countOfTeam = target.querySelector(".team");
 
@@ -57,7 +58,7 @@ export default class View extends EventEmitter {
 
         inst = new Ship(item);
         break;
-      case "costs":
+      case collectionTypes.COSTS:
         const radios = target.querySelectorAll(".type");
         const model = Array.from(radios).find(radio => radio.checked);
         const costByCargo = target.querySelector(".cargo");
@@ -85,7 +86,7 @@ export default class View extends EventEmitter {
   }
 
   createItem(type, item) {
-    const li = this.createDOMElement("li", null, "note-list__li");
+    const li = this.createDOMElement("li", null, "vehicle-list__li");
     const itemToAdd = this.createDOMElement("div", null, "item");
 
     const modelTitle = this.createDOMElement("h3", "Model:", "item__title");
@@ -94,7 +95,7 @@ export default class View extends EventEmitter {
     modelWrapper.append(modelTitle, model);
     itemToAdd.append(modelWrapper);
 
-    if (type === "costs") {
+    if (type === collectionTypes.COSTS) {
       const costByCargoTitle = this.createDOMElement(
         "h3",
         "Cost by 1 kg of cargo:",
@@ -166,7 +167,7 @@ export default class View extends EventEmitter {
       speedWrapper.append(speedTitle, speed);
 
       switch (type) {
-        case "trucks":
+        case collectionTypes.TRUCKS:
           const licenseTitle = this.createDOMElement(
             "h3",
             "License Plate:",
@@ -205,7 +206,7 @@ export default class View extends EventEmitter {
           );
           break;
 
-        case "ships":
+        case collectionTypes.SHIPS:
           const nameTitle = this.createDOMElement("h3", "Name:", "item__title");
           const name = this.createDOMElement("p", item.name, "item__text");
           const nameWrapper = this.createDOMElement(
@@ -258,10 +259,14 @@ export default class View extends EventEmitter {
     this.costList.innerHTML = "";
 
     const vehiclesToAdd = vehicles.map(vehicle => {
-      const type = vehicle.hasOwnProperty("licensePlate") ? "trucks" : "ships";
+      const type = vehicle.hasOwnProperty("licensePlate")
+        ? collectionTypes.TRUCKS
+        : collectionTypes.SHIPS;
       return this.createItem(type, vehicle);
     });
-    const costsToAdd = costs.map(cost => this.createItem("costs", cost));
+    const costsToAdd = costs.map(cost =>
+      this.createItem(collectionTypes.COSTS, cost)
+    );
 
     this.vehicleList.append(...vehiclesToAdd);
     this.costList.append(...costsToAdd);

@@ -1,4 +1,5 @@
 import Cost from "./classes/cost";
+import collectionTypes from "./constants/collectionTypes";
 
 export default class Controller {
   constructor(model, view) {
@@ -17,7 +18,8 @@ export default class Controller {
   }
 
   addItem(item) {
-    const listType = item instanceof Cost ? "costs" : "vehicles";
+    const listType =
+      item instanceof Cost ? collectionTypes.COSTS : collectionTypes.VEHICLES;
 
     this.model.addItem(item, listType);
     try {

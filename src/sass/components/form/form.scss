@@ -16,6 +16,7 @@
 .form-list__title {
     font-size: 18px;
     text-align: center;
+    font-weight: 500;
 }
 
 .form {
@@ -67,7 +68,7 @@
 .cost-form__wrapper {
     width: 100%;
     display: flex;
-    margin-bottom: 6px;
+    margin-bottom: 14px;
     justify-content: space-around;
 }
 
@@ -76,6 +77,10 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.cost-button-wrapper {
+    padding-top: 50px;
 }
 
 @media screen and (max-width: 767px) {
